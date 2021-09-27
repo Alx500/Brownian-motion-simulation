@@ -3,17 +3,21 @@ acc<-function(P,i,t=12,y,plotit=TRUE,...){
     cat("Falta de argumentos (P,i,y).\n")
     return(NA)
   }
+  
   F<-vector("double",as.integer(y))
   for(j in 1:as.integer(y)){
     F[j]=P*(1+i/(100*t))^(t*j)
   }
+  
   if(plotit==TRUE){
     plot(1:as.integer(y),F,type = "s",...)
   }
+  
   else{
     return(F)
   }
 }
+
 
 Haar<-function(n,k,t=0,plotit=FALSE){
   if(n==0 && k==1){
@@ -24,9 +28,11 @@ Haar<-function(n,k,t=0,plotit=FALSE){
     }
     return (1)
   }
+  
   if(k%%2==0 || k>=2^n){
     stop("El valor 'k' no es impar o es mayor igual que 2^n o esta fuera de limite")
   }
+  
   if(plotit==TRUE){
     x<-vector("double",2^n+1)
     for (i in 0:2^n) {
@@ -40,16 +46,20 @@ Haar<-function(n,k,t=0,plotit=FALSE){
     abline(h=0)
     abline(v=0)
   }
+  
   if(t>=(k-1)/2^n && t<k/2^n){
     return(2^((n-1)/2))
   }
+  
   if(t>=k/(2^n) && t<(k+1)/(2^n)){
     return(-2^((n-1)/2))
   }
+  
   else{
     return(0)
   }
 }
+
 
 snk<-function(n,k,t=0,plotit=FALSE){
   if(n==0 && k==1){
@@ -62,9 +72,11 @@ snk<-function(n,k,t=0,plotit=FALSE){
     }
     return (t)
   }
+  
   if(k%%2==0 || k>=2^n){
     stop("El valor 'k' no es impar o es mayor igual que 2^n o esta fuera de limite")
   }
+  
   if(plotit==TRUE){
     x<-c((k-1)/2^n,k/(2^n),(k+1)/2^n)
     y<-c(0,2^(-(n+1)/2),0)
@@ -74,12 +86,15 @@ snk<-function(n,k,t=0,plotit=FALSE){
     abline(h=0)
     abline(v=0)
   }
+  
   if(t>=(k-1)/2^n && t<k/2^n){
     return(2^((n-1)/2)*(t-(k-1)/(2^n)))
   }
+  
   if(t>=k/(2^n) && t<(k+1)/(2^n)){
     return(2^(-(n+1)/2)-2^((n-1)/2)*(t-k/(2^n)))
   }
+  
   else{
     return(0)
   }
